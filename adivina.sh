@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Comienza el juego"
 NUMERO_RANDOM=$(( $RANDOM % 100 + 1))
 NUM=0
 while [ $NUM -ne $NUMERO_RANDOM ]
