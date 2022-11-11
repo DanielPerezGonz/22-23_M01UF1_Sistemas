@@ -24,7 +24,9 @@ fi
 
 echo "(5) SEND MSG"
 
-echo "FILE_NAME IP.IP" | nc $SERVER_AD $PORT
+FILE_NAME="IP.IP"
+
+echo "FILE_NAME $FILE_NAME" | nc $SERVER_AD $PORT
 
 echo "(6) LISTEN"
 
@@ -38,6 +40,8 @@ then
 	exit 2
 fi
 
+echo "(9) SEND: Datos de IP.IP"
 
+cat ip_ip/$FILE_NAME | nc $SERVER_AD $PORT
 
 exit 0

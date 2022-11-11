@@ -22,11 +22,11 @@ echo "OK_TURIP" | nc $IP $PORT
 echo "(4) LISTEN"
 
 MSG=`nc -l $PORT`
-PRF=`echo $MSG | cut -d " " -f 1`
-FN=`echo $MSG | cut -d " " -f 2`
+PREFIX=`echo $MSG | cut -d " " -f 1`
+FILE_NAME=`echo $MSG | cut -d " " -f 2`
 
 echo "(7) SEND: Comprobacion"
-if [ "$PRF" != "FILE_NAME" ]
+if [ "$PREFIX" != "FILE_NAME" ]
 then
 	echo "ERROR 2: Prefijo incorrecto"
 	echo "KO_TURIP" | nc $IP $PORT
@@ -35,9 +35,9 @@ fi
 
 echo "OK_TURIP" | nc $IP $PORT
 
+echo "(8) LISTEN: Datos de IP.IP"
 
-
-
+`nc -l $PORT` > inbox/$FILE_NAME
 
 
 
