@@ -8,8 +8,18 @@ echo "(0) LISTEN"
 MSG=`nc -l $PORT`
 HS=`echo $MSG | cut -d " " -f 1`
 IP=`echo $MSG | cut -d " " -f 2`
+IP_CLIENT_MD5=`echo $MSG | cut -d " " -f 3`
+
+IP_MD5=`echo $IP | md5sum | cut -d " " -f 1`
 
 echo "(3) SEND: Comprobacion"
+
+if [ "$IP_CLIENT_MD5" != "$IP_MD5" ]
+then
+	echo "ERROR 1: IP del cliente incorrecta"
+	exit 1
+fi
+
 if [ "$HS" != "HOLI_TURIP" ]
 then 
 	echo "ERROR 1: Handshake incorrecto"
